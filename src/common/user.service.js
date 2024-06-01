@@ -5,7 +5,6 @@ angular.module('common')
 .service('UserService', UserService);
 
 
-//UserService.$inject = ['$http', 'ApiPath'];
 function UserService() {
   var service = this;
   service.user = {};
