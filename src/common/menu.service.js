@@ -22,6 +22,14 @@ function MenuService($http, ApiPath) {
     });
   };
 
+  service.getMenuItem = function (shortName) {
+    var category = shortName.match(/[a-zA-z]+/)[0];
+    var number = shortName.match(/\d+/)[0];
+    return $http.get(ApiPath + '/menu_items/' + category + '/menu_items/' + (number - 1) + ".json").then(function (response) {
+        return response.data;
+    });
+  };
+
 }
 
 

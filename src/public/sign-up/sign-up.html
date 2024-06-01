@@ -1,0 +1,74 @@
+<h3>Sign up to our newsletter!</h3>
+
+<fieldset>
+  <form name='regForm' novalidate>
+    <label>First name: </label>
+    <input type="text" name="firstName"
+           ng-model="signUpCtrl.user.firstName"
+           ng-minlength="2"
+           required>
+    <span class="validate-error-message"
+          ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required) && regForm.firstName.$touched">
+            First name must be at least 2 characters long
+          </span>
+    <br>
+
+    <label>Last name: </label>
+    <input type="text" name="lastName"
+           ng-model="signUpCtrl.user.lastName"
+           ng-minlength="2"
+           required>
+    <span class="validate-error-message"
+          ng-if="(regForm.lastName.$error.minlength || regForm.lastName.$error.required) && regForm.lastName.$touched">
+            Last name must be at least 2 characters long
+    </span>
+    <br>
+
+    <label>E-mail: </label>
+    <input type="email" name="email"
+           ng-model="signUpCtrl.user.email"
+           pattern="(\S+)@(\S+)(.com|.pl)"
+           required>
+    <span class="validate-error-message"
+          ng-if="regForm.email.$invalid && regForm.email.$touched">
+            Must be a valid email address: user@domain.com or user@domain.pl
+          </span>
+    <br>
+
+    <label>Phone: </label>
+    <input type="text" name="phone"
+           ng-model="signUpCtrl.user.phone"
+           pattern="(\d{3})\s*(\d{3})\s*(\d{3})"
+           required>
+    <span class="validate-error-message"
+          ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone number must be in the format ### ### ### or ######### (9 numbers)
+          </span>
+    <br>
+
+    <label>Favorite dish: </label>
+    <input type="text" name="favoriteDish"
+           ng-model="signUpCtrl.user.favoriteDish"
+           required>
+    <span class="validate-error-message"
+          ng-if="regForm.favoriteDish.$invalid && regForm.favoriteDish.$touched">
+            Please provide the menu number of your favorite dish (e.g. B4)
+          </span>
+    <span class="validate-error-message"
+          ng-if="signUpCtrl.user.dish">
+            No such menu number exists
+          </span>
+    <br>
+
+    <button class="btn btn-danger"
+        ng-disabled="regForm.$invalid"
+        ng-click="signUpCtrl.submit()">Submit</button>
+
+  </form>
+
+  <span class="validate-success-message"
+        ng-if="signUpCtrl.submitted && signUpCtrl.user.dish">
+            Your information has been saved
+  </span>
+
+</fieldset>
